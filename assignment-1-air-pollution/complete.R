@@ -1,2 +1,15 @@
-sample.interval=20000
-".External" "Rprof" 
+directory <- list.files()
+complete <- function(directory, id = 1:332)  {
+       files_full <- list.files(directory, full.names = TRUE)
+       dat <- data.frame()
+       
+         for (i in id) {
+                   a <- read.csv(files_full[i])
+               nobs <- sum(complete.cases(a))
+              tmp <- data.frame(i, nobs)
+                dat <- rbind(dat, tmp)
+               }
+     
+          colnames(dat) <- c("id", "nobs")
+          dat
+  }
